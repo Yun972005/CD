@@ -1,0 +1,17 @@
+name: Deploy Laravel Sail
+on:
+  push:
+    [cite_start]branches: [ "main" ] # Se activa al hacer push a main [cite: 250]
+jobs:
+  deploy:
+    [cite_start]runs-on: self-hosted # Usa tu runner local [cite: 257]
+    steps:
+      - name: Deploy (Local) con Sail
+        shell: bash
+        run: |
+          set -e # Si algo falla, se detiene [cite: 389]
+          cd /ruta/absoluta/a/tu/carpeta/blog # Debes poner la ruta real de tu proyecto 
+          git pull [cite: 328]
+          ./vendor/bin/sail down [cite: 329]
+          ./vendor/bin/sail up -d --build [cite: 330]
+          ./vendor/bin/sail artisan migrate --force [cite: 331]
